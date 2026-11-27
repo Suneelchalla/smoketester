@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "ERP Smoke Tester",
+  "version": "1.0.0",
+  "description": "Logs in to the production ERP, opens the listed screens, takes full-screen screenshots and builds one PDF.",
+  "permissions": ["tabs", "scripting", "storage", "downloads"],
+  "host_permissions": ["https://erp.folkmaritime.com/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Open ERP Smoke Tester" }
+}
