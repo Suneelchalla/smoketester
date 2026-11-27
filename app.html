@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ERP Smoke Tester</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <h1>ERP Production Smoke Tester</h1>
+  <span id="status" class="status">Idle</span>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1 · Connection</h2>
+    <div class="grid">
+      <label>Production URL<input id="baseUrl" value="https://erp.folkmaritime.com/"></label>
+      <label>Username<input id="username" autocomplete="off"></label>
+      <label>Password<input id="password" type="password" autocomplete="new-password"></label>
+    </div>
+    <p class="hint">Credentials stay in memory only and are never saved. You type the OTP yourself in the ERP window.</p>
+  </section>
+
+  <section class="card">
+    <h2>2 · Screens <small>(type the name exactly as it appears in the Module Search list)</small></h2>
+    <table>
+      <thead><tr><th>#</th><th>Screen name</th><th>Type</th><th>Options (special screens)</th><th></th></tr></thead>
+      <tbody id="screenRows"></tbody>
+    </table>
+    <div class="row">
+      <button id="addRow">+ Add screen</button>
+      <button id="bulkToggle">Paste list…</button>
+    </div>
+    <div id="bulkBox" hidden>
+      <textarea id="bulk" rows="6" placeholder="One screen per line.&#10;Add &quot;| latest&quot; for special screens, e.g.&#10;Booking | latest"></textarea>
+      <button id="bulkAdd">Add to list</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary>3 · Settings</summary>
+      <div class="grid">
+        <label>Wait after opening a screen (ms)<input id="waitMs" type="number" value="4000"></label>
+        <label>OTP time limit (minutes)<input id="otpMin" type="number" value="5"></label>
+        <label>Close-tab icon CSS selector (optional)<input id="closeSel" placeholder="e.g. .tab-close"></label>
+        <label>Logout button CSS selector (optional)<input id="logoutSel" placeholder="e.g. #logoutBtn"></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="card actions">
+    <button id="start" class="primary">▶ Start smoke test</button>
+    <button id="stop" disabled>■ Stop</button>
+    <button id="pdf" disabled>Download PDF again</button>
+  </section>
+
+  <section class="card"><h2>Progress</h2><ol id="log"></ol></section>
+  <section class="card"><h2>Screenshots</h2><div id="gallery"></div></section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
